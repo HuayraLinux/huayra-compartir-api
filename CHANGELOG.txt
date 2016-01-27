@@ -1,0 +1,3 @@
+  * Creando API para servir archivos.
+  * Creando el readme.
+  * Commit inicial.
