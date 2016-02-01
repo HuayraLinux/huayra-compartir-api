@@ -55,4 +55,17 @@ describe('Manejo de la lista de equipos', function() {
   });
 
 
+  it("Puede borrar un equipo", function(done) {
+    request(app).delete('/equipos/192.168.1.1')
+      .expect(200, done);
+  });
+
+  it("Puede acceder a /equipos y está vacío", function(done) {
+    request(app).get('/equipos')
+      .expect(200)
+      .expect(/equipos/)
+      .expect(/"cantidad":0/, done);
+  });
+
+
 });
