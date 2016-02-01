@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
     archivos: get_url(req, 'obtener'),
     avatar: get_url(req, 'avatar'),
     nombre: config.nombre,
-    frase: config.frase
+    frase: config.frase,
+    equipos: get_url(req, 'equipos')
    });
 });
 

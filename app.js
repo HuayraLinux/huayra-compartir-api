@@ -9,6 +9,7 @@ var cors = require('cors')
 var routes = require('./routes/index');
 var avatar = require('./routes/avatar');
 var obtener = require('./routes/obtener');
+var equipos = require('./routes/equipos');
 
 var config = require('./config');
 
@@ -29,6 +30,7 @@ app.use('/', routes);
 app.use('/avatar/', avatar);
 app.use('/obtener/', obtener);
 app.use('/descargar', express.static(config.ruta_compartir));
+app.use('/equipos/', equipos);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
