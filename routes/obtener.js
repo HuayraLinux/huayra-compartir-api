@@ -62,7 +62,7 @@ function generar_listado_tipado_de_archivos(directorio_base, host, path_base, li
 
 router.get(/(.*)/, function(req, res, next) {
   var ruta = req.params[0] || "";
-  var ruta_completa = path.join(config.ruta_compartir, ruta);
+  var ruta_completa = path.join(config.obtener("ruta_compartir"), ruta);
   var host = req.protocol + "://" + req.get('host');
   var path_base = req.url;
 

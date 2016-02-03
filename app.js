@@ -29,7 +29,7 @@ app.use("/archivos", express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/avatar/', avatar);
 app.use('/obtener/', obtener);
-app.use('/descargar', express.static(config.ruta_compartir));
+app.use('/descargar', express.static(config.obtener('ruta_compartir')));
 app.use('/equipos/', equipos);
 
 app.use(function(req, res, next) {

@@ -87,4 +87,19 @@ describe('Puede modificar nombre y frase', function() {
       .expect(/DON PEPE/)
       .expect(/Una frase/, done);
   });
+
+  it("Puede enviar un nombre y frase nuevo", function(done) {
+    request(app).post('/')
+      .send({nombre: 'Alumno', frase: 'Una frase de prueba'})
+      .expect(200)
+      .expect(/frase/)
+      .expect(/nombre/, done);
+  });
+
+  it("Obtiene el nombre y frase nuevo", function(done) {
+    request(app).get('/')
+      .expect(200)
+      .expect(/Alumno/)
+      .expect(/Una frase de prueba/, done);
+  });
 });

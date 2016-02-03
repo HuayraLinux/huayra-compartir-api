@@ -13,10 +13,10 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || config.port);
-app.set('port', config.port);
+var port = normalizePort(process.env.PORT || config.obtener("port"));
+app.set('port', config.obtener("port"));
 
-console.log("Iniciando servicio: http://localhost:" + config.port);
+console.log("Iniciando servicio: http://localhost:" + config.obtener("port"));
 
 var server = http.createServer(app);
 

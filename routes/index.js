@@ -10,11 +10,11 @@ router.get('/', function(req, res, next) {
   var ruta = req.params[0] || "";
 
   res.json({
-    archivos: get_url(req, 'obtener'),
-    avatar: get_url(req, 'avatar'),
-    nombre: config.nombre,
-    frase: config.frase,
-    equipos: get_url(req, 'equipos')
+    archivos: get_url(req, "obtener"),
+    avatar: get_url(req, "avatar"),
+    nombre: config.obtener("nombre"),
+    frase: config.obtener("frase"),
+    equipos: get_url(req, "equipos")
    });
 });
 
@@ -22,8 +22,9 @@ router.post('/', function(req, res, next) {
   var nombre = req.body["nombre"];
   var frase = req.body["frase"];
 
-  config.nombre = nombre;
-  config.frase = frase;
+  config.definir("nombre", nombre);
+  config.definir("frase", frase);
+  config.guardar();
 
   res.json({nombre, frase});
 });
