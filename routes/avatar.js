@@ -1,10 +1,11 @@
 var fs = require('fs');
 var express = require('express');
 var router = express.Router();
+var path = require("path");
 
 
 router.get('/', function(req, res, next) {
-  var ruta_completa = process.env.HOME + "/.huayra-compartir_avatar";
+  var ruta_completa = path.join(process.env.HOME, ".huayra-compartir_avatar");
 
   fs.exists(ruta_completa, function(exists) {
 
