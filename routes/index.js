@@ -18,4 +18,14 @@ router.get('/', function(req, res, next) {
    });
 });
 
+router.post('/', function(req, res, next) {
+  var nombre = req.body["nombre"];
+  var frase = req.body["frase"];
+
+  config.nombre = nombre;
+  config.frase = frase;
+
+  res.json({nombre, frase});
+});
+
 module.exports = router;

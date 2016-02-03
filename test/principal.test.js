@@ -69,3 +69,22 @@ describe('Manejo de la lista de equipos', function() {
 
 
 });
+
+
+describe('Puede modificar nombre y frase', function() {
+
+  it("Puede enviar un nombre y frase nuevo", function(done) {
+    request(app).post('/')
+      .send({nombre: 'DON PEPE', frase: 'Una frase'})
+      .expect(200)
+      .expect(/frase/)
+      .expect(/nombre/, done);
+  });
+
+  it("Obtiene el nombre y frase nuevo", function(done) {
+    request(app).get('/')
+      .expect(200)
+      .expect(/DON PEPE/)
+      .expect(/Una frase/, done);
+  });
+});
