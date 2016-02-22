@@ -21,6 +21,7 @@ var cfg = homeConfig.load(CONFIG_FOLDER + '/huayra-compartir.ini', {
   nombre: "alumno",
   frase: "sin definir..."
 });
+cfg.save();
 
 var config = {
   obtener: function(clave) {
