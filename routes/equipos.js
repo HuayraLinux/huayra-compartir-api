@@ -14,17 +14,28 @@ router.post('/', function(req, res, next) {
   var host = req.body["host"];
   var id = req.body["id"];
   var equipo = {host, id};
+  var indice = -1;
 
-  equipos.push(equipo);
-  res.json({equipo: equipo});
+  for (var i=0; i<equipos.length; i++) {
+    if (equipos[i].id == id || equipos[i].host == host) {
+      indice = i;
+    }
+  }
+
+  if (indice === -1) {
+    equipos.push(equipo);
+    res.json({equipo: equipo});
+  }
+
+  res.json({});
 });
 
 router.delete('/:id', function(req, res, next) {
-  var host_a_eliminar = req.params.id;
+  var id_a_eliminar = req.params.id;
   var item_a_eliminar = -1;
 
   for (var i=0; i<equipos.length; i++) {
-    if (equipos[i].host == host_a_eliminar) {
+    if (equipos[i].id == id_a_eliminar) {
       item_a_eliminar = i;
     }
   }

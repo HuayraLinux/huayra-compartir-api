@@ -56,7 +56,7 @@ describe('Manejo de la lista de equipos', function() {
 
 
   it("Puede borrar un equipo", function(done) {
-    request(app).delete('/equipos/192.168.1.1')
+    request(app).delete('/equipos/123')
       .expect(200, done);
   });
 
