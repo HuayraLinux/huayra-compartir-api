@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "serve": "supervisor ./bin/www",
-    "utest": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

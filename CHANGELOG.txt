@@ -1,3 +1,7 @@
+  * 0.0.3
+  * Cambiando de tests.
+  * update
+  * update
   * 0.0.2
   * Cambiando el nombre del archivo binario.
   * Merge branch 'master' of github.com:HuayraLinux/huayra-compartir-api
