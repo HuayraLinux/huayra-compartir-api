@@ -31,8 +31,10 @@ live:
 	npm watch
 
 version:
-	npm version patch
-	make changelog
+	@npm version patch
+	@make changelog
+	@git push --tags
+	@git push
 
 changelog:
 	@git log `git describe --tags --abbrev=0` --pretty=format:"  * %s" > CHANGELOG.txt
