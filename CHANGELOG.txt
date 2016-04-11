@@ -1,3 +1,15 @@
+  * 0.0.2
+  * Cambiando el nombre del archivo binario.
+  * Merge branch 'master' of github.com:HuayraLinux/huayra-compartir-api
+  * save config
+  * reparando la eliminacion de equipos.
+  * Reparando el envío del avatar.
+  * Arreglo menor en la ruta del avatar local.
+  * Implementando configuración persistente.
+  * Implementando posibilidad de cambiar nombre y frase.
+  * Implementando el método "delete".
+  * Agregando rutas para "equipos".
+  * Creando versión 0.0.1
   * 0.0.1
   * Creando el archivo Makefile y Changelog
   * Creando API para servir archivos.
