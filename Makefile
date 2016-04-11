@@ -17,7 +17,7 @@ comandos:
 	@echo "    ${G}live${N}            Ejecuta la aplicación y se reinicia automáticamente."
 	@echo ""
 	@echo "    ${G}version${N}         Aumenta la versión."
-	@echo "    ${G}test${N}            Ejecuta los tests de unidad."
+	@echo "    ${G}utest${N}            Ejecuta los tests de unidad."
 	@echo "    ${G}ejecutar${N}        Ejecuta la aplicación."
 	@echo ""
 
@@ -40,7 +40,7 @@ changelog:
 	@git log `git describe --tags --abbrev=0` --pretty=format:"  * %s" > CHANGELOG.txt
 	@echo "Generando el archivo CHANGELOG.txt"
 
-test:
+utest:
 	npm test
 
-.PHONY: test
+.PHONY: utest
