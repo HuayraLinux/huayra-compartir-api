@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var host = req.body["host"];
   var id = req.body["id"];
-  var equipo = {host, id};
+  var equipo = {host:host, id:id};
   var indice = -1;
 
   for (var i=0; i<equipos.length; i++) {

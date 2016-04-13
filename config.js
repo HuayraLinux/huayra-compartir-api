@@ -17,7 +17,7 @@ if (!fs.existsSync(CONFIG_FOLDER)){
 // Obtiene el objeto para accerder a la configuración de usuario.
 //
 var cfg = homeConfig.load(CONFIG_FOLDER + '/huayra-compartir.ini', {
-  ruta_compartir: "/Users/hugoruscitti/Compartido/",
+  ruta_compartir: process.env.HOME + "/Compartido/",
   nombre: "alumno",
   frase: "sin definir..."
 });
