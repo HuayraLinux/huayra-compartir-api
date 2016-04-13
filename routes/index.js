@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
   config.definir("frase", frase);
   config.guardar();
 
-  res.json({nombre, frase});
+  res.json({nombre:nombre, frase:frase});
 });
 
 module.exports = router;
