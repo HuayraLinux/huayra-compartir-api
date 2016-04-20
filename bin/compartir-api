@@ -8,21 +8,37 @@ var app = require('../app');
 var config = require('../config');
 var debug = require('debug')('compartir-api:server');
 var http = require('http');
+var lockFile = require('lockfile');
 
 /**
  * Get port from environment and store in Express.
  */
 
+var lockfile_path = "/tmp/huayra-compartir-api-UID.lock".replace('UID', process.getuid());
 var port = normalizePort(process.env.PORT || config.obtener("port"));
 app.set('port', config.obtener("port"));
 
 console.log("Iniciando servicio: http://localhost:" + config.obtener("port"));
 
-var server = http.createServer(app);
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+if( !lockFile.checkSync(lockfile_path) ){
+    lockFile.lockSync(lockfile_path);
+
+    var server = http.createServer(app);
+
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+}
+
+
+process.on('SIGTERM', function () {
+  server.close(function () {
+    lockFile.unlockSync(lockfile_path);
+    process.exit(0);
+  });
+});
+
 
 /**
  * Normalize a port into a number, string, or false.
