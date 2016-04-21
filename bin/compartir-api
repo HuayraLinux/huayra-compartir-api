@@ -9,12 +9,14 @@ var config = require('../config');
 var debug = require('debug')('compartir-api:server');
 var http = require('http');
 var lockFile = require('lockfile');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
  */
 
 var lockfile_path = "/tmp/huayra-compartir-api-UID.lock".replace('UID', process.getuid());
+var pidfile_path = "/tmp/huayra-compartir-api-UID.pid".replace('UID', process.getuid());
 var port = normalizePort(process.env.PORT || config.obtener("port"));
 var server = null;
 app.set('port', config.obtener("port"));
@@ -23,6 +25,7 @@ if( !lockFile.checkSync(lockfile_path) ){
     console.log("Iniciando servicio: http://localhost:" + config.obtener("port"));
 
     lockFile.lockSync(lockfile_path);
+    fs.writeFileSync(pidfile_path, process.pid);
 
     var server = http.createServer(app);
 
@@ -36,12 +39,12 @@ else{
 
 process.on('SIGTERM', function () {
   if( server ) {
-    ExitGracefully(server, lockfile_path);
+    ExitGracefully(server, lockfile_path, pidfile_path);
   }
 });
 process.on( "SIGINT", function() {
   if( server ) {
-    ExitGracefully(server, lockfile_path);
+    ExitGracefully(server, lockfile_path, pidfile_path);
   }
 } );
 
@@ -111,9 +114,10 @@ function onListening() {
  * Exit gracefully
  */
 
-function ExitGracefully(server, lockfile_path){
+function ExitGracefully(server, lockfile_path, pidfile_path){
   server.close(function () {
     lockFile.unlockSync(lockfile_path);
+    fs.unlinkSync(pidfile_path);
     process.exit(0);
   });
 }
