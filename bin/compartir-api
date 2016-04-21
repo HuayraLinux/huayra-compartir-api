@@ -19,10 +19,9 @@ var port = normalizePort(process.env.PORT || config.obtener("port"));
 var server = null;
 app.set('port', config.obtener("port"));
 
-console.log("Iniciando servicio: http://localhost:" + config.obtener("port"));
-
-
 if( !lockFile.checkSync(lockfile_path) ){
+    console.log("Iniciando servicio: http://localhost:" + config.obtener("port"));
+
     lockFile.lockSync(lockfile_path);
 
     var server = http.createServer(app);
@@ -30,6 +29,9 @@ if( !lockFile.checkSync(lockfile_path) ){
     server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
+}
+else{
+    console.log("El servicio ya esta corriendo en http://localhost:" + config.obtener("port"));
 }
 
 process.on('SIGTERM', function () {
